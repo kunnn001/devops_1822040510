@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Website bài tập CI/CD với GitHub Actions và GitHub Pages.">
+  <title>Website DevOps - Nguyễn Xuân Trường - 1822040510</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Điều hướng chính">
+      <a class="brand" href="#">DEV<span>OPS</span></a>
+      <a class="nav-link" href="#about">Giới thiệu</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-glow glow-one"></div>
+      <div class="hero-glow glow-two"></div>
+      <div class="container hero-content">
+        <p class="eyebrow"><span class="status-dot"></span> CI/CD · GITHUB ACTIONS · GITHUB PAGES</p>
+        <h1>Xin chào, mình là Trường<br><span class="gradient-text">Nguyễn Xuân Trường</span></h1>
+        <p>Phiên bản 1.0 - Triển khai tự động bằng GitHub Actions</p>
+        <button id="myButton">Click Me</button>
+        <p id="output"></p>
+        <p class="student-id">MSSV: <strong>1822040510</strong></p>
+        <p class="intro">Đây là website thực hành quy trình CI/CD tự động. Mỗi lần cập nhật mã nguồn, GitHub Actions sẽ kiểm tra và triển khai website nếu các bước kiểm tra thành công.</p>
+        <a class="primary-button" href="#pipeline">Khám phá quy trình <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="container stats">
+        <div class="stat-card"><span class="stat-number">01</span><span class="stat-label">Viết mã nguồn</span></div>
+        <div class="stat-card"><span class="stat-number">02</span><span class="stat-label">Tự động kiểm tra</span></div>
+        <div class="stat-card"><span class="stat-number">03</span><span class="stat-label">Triển khai website</span></div>
+      </div>
+    </section>
+
+    <section class="section container" id="about">
+      <div class="section-heading">
+        <p class="eyebrow">VỀ BÀI THỰC HÀNH</p>
+        <h2>Học bằng cách <span class="gradient-text">thực hành</span></h2>
+        <p>Minh họa cách đưa một website tĩnh lên internet bằng công cụ CI/CD của GitHub.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="icon">⌘</div>
+          <h3>Code</h3>
+          <p>Xây dựng giao diện với HTML, CSS và JavaScript.</p>
+        </article>
+        <article class="feature-card">
+          <div class="icon">✓</div>
+          <h3>Check</h3>
+          <p>Workflow xác nhận các tệp cần thiết và thẻ <code>&lt;title&gt;</code> tồn tại.</p>
+        </article>
+        <article class="feature-card">
+          <div class="icon">↗</div>
+          <h3>Deploy</h3>
+          <p>Chỉ triển khai khi job kiểm tra hoàn tất thành công.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="pipeline-section" id="pipeline">
+      <div class="container pipeline-layout">
+        <div>
+          <p class="eyebrow">QUY TRÌNH TỰ ĐỘNG</p>
+          <h2>Từ commit đến<br><span class="gradient-text">website trực tuyến</span></h2>
+          <p class="pipeline-copy">GitHub Actions chạy workflow khi có thay đổi được push lên nhánh <code>main</code>. Nếu kiểm tra thất bại, bước deploy sẽ bị bỏ qua.</p>
+          <button class="secondary-button" id="demo-button" type="button">Mô phỏng kiểm tra</button>
+          <p class="demo-result" id="demo-result" role="status" aria-live="polite">Nhấn nút để xem mô phỏng trạng thái pipeline.</p>
+        </div>
+        <div class="pipeline-list">
+          <div class="pipeline-step"><span class="step-number">1</span><div><h3>Push code</h3><p>Đẩy thay đổi lên repository GitHub.</p></div><span class="step-tag">PUSH</span></div>
+          <div class="pipeline-step"><span class="step-number">2</span><div><h3>Job check</h3><p>Kiểm tra các tệp và thẻ title trong HTML.</p></div><span class="step-tag">CI</span></div>
+          <div class="pipeline-step"><span class="step-number">3</span><div><h3>Job deploy</h3><p>Đưa website lên GitHub Pages khi check thành công.</p></div><span class="step-tag">CD</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Nguyễn Văn A · Bài tập DevOps</span>
+      <span>Built with HTML, CSS & JavaScript</span>
+    </div>
+  </footer>
+</body>
+</html>
