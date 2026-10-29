@@ -1,0 +1,58 @@
+name: Deploy Website          # Tên workflow hiển thị ở tab Actions
+
+on:                           # Khi nào chạy
+  push:
+    branches: [main]          # Mỗi lần push lên nhánh main
+  workflow_dispatch:          # Cho phép chạy tay
+
+permissions:                  # Quyền cần để deploy lên Pages
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  check:                      # Job 1: kiểm tra code (phần CI)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Kiểm tra đủ 3 file
+        run: |
+          for f in index.html style.css script.js; do
+            if [ ! -f "$f" ]; then
+              echo "Thiếu file: $f"
+              exit 1
+            fi
+          done
+          echo "Đủ 3 file"
+
+      - name: Kiểm tra index.html có thẻ title
+        run: |
+          if ! grep -q "<title>" index.html; then
+            echo "index.html thiếu thẻ <title>"
+            exit 1
+          fi
+          echo "Có thẻ title"
+
+  deploy:                     # Job 2: triển khai (phần CD)
+    needs: check              # Chỉ chạy khi check thành công
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cấu hình Pages
+        uses: actions/configure-pages@v5
+
+      - name: Đóng gói website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy lên GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
